@@ -2,8 +2,8 @@ import { Outlet } from "react-router-dom";
 import AppBar from "../components/AppBar";
 import {createTheme, ThemeProvider} from "@mui/material/styles";
 import { useState } from "react";
-import { Button } from "@mui/material";
-
+import { IconButton } from "@mui/material";
+import Brightness4Icon from '@mui/icons-material/Brightness4';
 
 
 
@@ -20,8 +20,8 @@ const Root = () =>{
         <div>
             <ThemeProvider theme={darkTheme}>
                 <AppBar/>
-                <Button onClick={()=>{myMode == "light" ? setmyMode("dark"): setmyMode("light")}} 
-                style={{marginTop: '10vh'}}>hi</Button>
+                <IconButton  onClick={()=>{myMode == "light" ? setmyMode("dark"): setmyMode("light")}} 
+                style={{marginTop: '10vh'}}><Brightness4Icon /></IconButton>
                 <Outlet/>
                 
             </ThemeProvider>
