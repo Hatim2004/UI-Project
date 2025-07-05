@@ -1,48 +1,84 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from "@mui/material";
 import HomeIcon from '@mui/icons-material/Home';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
 
 export default function Facts(){
-    return(
-        <>
-         <Typography variant="h3" mb={'2vh'} mt={'14vh'} textAlign={'center'}>
-            Fun fact page
-        </Typography>
-        <Grid   
-            container
-            spacing={0}
-            direction={"column"}
-            alignItems={"center"}
-        >
-            <Button 
-            variant="contained" 
-            color="error"
-            endIcon = {<HomeIcon />} 
-            className="btn"
-            href="/">
-                Home
-            </Button>
-        </Grid>
+    const [Fact, setFact] = useState("Cats facts");
+    const [ImageUrl, setImageUrl] = useState("https://media.hswstatic.com/eyJidWNrZXQiOiJjb250ZW50Lmhzd3N0YXRpYy5jb20iLCJrZXkiOiJnaWZcL3NodXR0ZXJzdG9jay0yMjc4Nzc2MTg3LWhlcm8uanBnIiwiZWRpdHMiOnsicmVzaXplIjp7IndpZHRoIjoiMTIwMCJ9fX0=");
+    async function getFact() {
+      const url =  "https://catfact.ninja/fact?max_length=140";
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`Response status: ${response.status}`);
+        }
 
-         <Card sx={{ maxWidth: 345, marginLeft: 'auto', marginRight: 'auto', display: 'block', marginTop: '10vh'}}>
+        const json = await response.json();
+        setFact(json.fact)
+      } catch (error) {
+        console.error(error.message);
+      }
+    }
+
+     async function getCatImage() {
+      const url =  "https://api.thecatapi.com/v1/images/search";
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`Response status: ${response.status}`);
+        }
+
+        const json = await response.json();
+        setImageUrl(json[0].url)
+      } catch (error) {
+        console.error(error.message);
+      }
+    }
+
+    return(  
+        <>
+         <Typography variant="h3" mt={'14vh'} textAlign={'center'}>
+            Fun fact about cats
+        </Typography>
+
+         <Card sx={{ maxWidth: 445, marginLeft: 'auto', marginRight: 'auto', display: 'block', marginTop: '10vh'}}>
       <CardMedia
-        sx={{ height: 140 }}
-        image="../src/assets/images/cat-fact.webp"
+        sx={{ height: 240}}
+        image={ImageUrl}
         title="green iguana"
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           Cats
         </Typography>
-        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-          A house cat’s genome is 95.6 percent tiger, and they share many behaviors with their jungle ancestors, says Layla Morgan Wilde,
-          a cat behavior expert and the founder of Cat Wisdom 101. 
-          These behaviors include scent marking by scratching, prey play, prey stalking, pouncing, chinning, and urine marking.
+        <Typography variant="body1" sx={{ color: 'text.secondary' }}>
+          {Fact}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" href="https://cvillecatcare.com/veterinary-topics/101-amazing-cat-facts-fun-trivia-about-your-feline-friend/">Learn More</Button>
-      </CardActions>
+        <Button size="large" onClick={()=>{getFact(); getCatImage();}}>learn more about cats</Button>
+      </CardActions> 
     </Card>
+     <Grid   
+            container
+            spacing={0}
+            direction={"column"}
+            alignItems={"center"}
+            mt={'2vh'}
+        >
+          <Link to='/'>
+          <Button 
+          variant="contained" 
+          color="error"
+          endIcon = {<HomeIcon />} 
+          className="btn"
+          >
+            Home
+        </Button>
+        </Link>
+        </Grid>
 
         </>
     )

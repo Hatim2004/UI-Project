@@ -3,6 +3,7 @@ import '../index.css'
 import { Button, Grid, IconButton, Typography } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { Link } from 'react-router-dom';
 
 export default function Home(){
     return(
@@ -16,20 +17,15 @@ export default function Home(){
         direction={"column"}
         alignItems={"center"}
         >
-            <Button 
-            variant='outlined' 
-            color='error'
-            endIcon={<AddIcon />}
-            className="btn"
-            href="/facts">
-                Fun facts
-            </Button>
-            
-            <IconButton onClick={()=>{
-                alert('<3');
-            }}>
-                <FavoriteIcon color='error' fontSize='large'/>
-            </IconButton>
+            <Link to={'/facts'}>
+                <Button 
+                variant='outlined' 
+                color='error'
+                endIcon={<FavoriteIcon/>}
+                className="btn">
+                    Cats Fun facts 
+                </Button>
+            </Link>
         </Grid>
         
         

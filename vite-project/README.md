@@ -1,9 +1,12 @@
 <pre>
--React router
--Typography
--AppBar
--Variant
--Color main dark light
--Icon button 
--App bar
+-Avatar
+-List Item
+-Container and box
+-Router link useNavigate
+-Paper and card
+-MUI style and colors 
+-Dark mode
+-Local storge
+-Custom colors using pallets
+-Uselocation
 </pre>
