@@ -1,31 +1,28 @@
 import { Outlet } from "react-router-dom";
-import AppBar from "../components/AppBar";
-import {createTheme, ThemeProvider} from "@mui/material/styles";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useState } from "react";
-import { IconButton } from "@mui/material";
-import Brightness4Icon from '@mui/icons-material/Brightness4';
+import { CssBaseline } from "@mui/material";
+import { teal } from '@mui/material/colors';
+import Appbar from "../components/AppBar";
 
 
-
-const Root = () =>{
-    const [myMode, setmyMode] = useState("light");
+const Root = () => {
+    const [myMode, setmyMode] = useState("dark");
     const darkTheme = createTheme({
-        palette:{
+        palette: {
             // @ts-ignore
-            mode: myMode
+            mode: myMode,
+            primary: { main: teal[500] }
+
         },
     });
-
-    return(
+    return (
         <div>
             <ThemeProvider theme={darkTheme}>
-                <AppBar/>
-                <IconButton  onClick={()=>{myMode == "light" ? setmyMode("dark"): setmyMode("light")}} 
-                style={{marginTop: '10vh'}}><Brightness4Icon /></IconButton>
-                <Outlet/>
-                
+                <CssBaseline />
+                <Appbar  setMode={setmyMode} Mode={myMode}/>
+                <Outlet />
             </ThemeProvider>
-            
         </div>
     )
 }
