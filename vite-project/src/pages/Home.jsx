@@ -1,34 +1,28 @@
-import { Celebration } from '@mui/icons-material';
-import '../index.css' 
-import { Button, Grid, IconButton, Typography } from "@mui/material";
-import AddIcon from '@mui/icons-material/Add';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import { Link } from 'react-router-dom';
+import '../index.css'
+import { Button, Grid, TextField, Typography } from "@mui/material";
 
-export default function Home(){
-    return(
+
+export default function Home() {
+    return (
         <>
-        <Typography variant="h3" mb={'2vh'} mt={'14vh'} textAlign={'center'}>
-            Home Page
-        </Typography>
-        <Grid 
-        container
-        spacing={0}
-        direction={"column"}
-        alignItems={"center"}
-        >
-            <Link to={'/facts'}>
-                <Button 
-                variant='outlined' 
-                color='error'
-                endIcon={<FavoriteIcon/>}
-                className="btn">
-                    Cats Fun facts 
-                </Button>
-            </Link>
-        </Grid>
-        
-        
+            <Typography variant="h3" mb={'2vh'} mt={'14vh'} textAlign={'center'}>
+                Home Page
+            </Typography>
+            <Grid
+                container
+                spacing={0}
+                direction={"column"}
+                alignItems={"center"}
+            >
+                <TextField label='Iteam'>
+
+                </TextField>
+                <TextField  label='Price' sx={{ mt: '2em' }}>
+
+                </TextField>
+
+                <Button variant='contained' sx={{ mt: '2em' }}>Sumbit</Button>
+            </Grid>
         </>
     )
 }

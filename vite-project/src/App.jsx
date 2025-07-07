@@ -8,6 +8,7 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom"
+import NotFound from './pages/NotFound';
 
 
 const router = createBrowserRouter(
@@ -15,6 +16,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<Root />}>
       <Route index element={<Home />} />
       <Route path="facts" element={<Facts />} />
+      <Route path="*" element={<NotFound />} />
     </Route>
   )
 );
@@ -26,8 +28,8 @@ export default function Myapp() {
 
   return (
     <>
-        <RouterProvider router={router} />
-      
+      <RouterProvider router={router} />
+
     </>
   )
 }

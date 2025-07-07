@@ -68,16 +68,6 @@ export default function Facts() {
         alignItems={"center"}
         mt={'2vh'}
       >
-        <Link to='/'>
-          <Button
-            variant="contained"
-            color="error"
-            endIcon={<HomeIcon />}
-            className="btn"
-          >
-            Home
-          </Button>
-        </Link>
       </Grid>
 
     </>
